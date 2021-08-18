@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Liste{% endblock %}
+
+{% block body %}
+<br><br><br>
+<div class="container">
+    <h2>Anlegen</h2>
+
+    {{ include('liste/_form.html.twig') }}
+
+    <a href="{{ path('liste_index') }}">zurück</a>
+{% endblock %}

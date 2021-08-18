@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% for message in app.flashes('bestell') %}
+  <div class="alert alert-success">
+      <h3>{{message}}</h3>
+  </div>
+{% endfor %}
+<!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h3 class="section-title">Menukarte</h3>
+        </header>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">Alle Gerichte</li>
+              <li data-filter=".Getränk">Getränk</li>
+              <li data-filter=".Vorspeise">Vorspeise</li>
+              <li data-filter=".Hauptspeise">Hauptspeise</li>
+              <li data-filter=".Nachspeise">Nachspeise</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+        {% for gericht in gerichte %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app {{gericht.katigorie}}">
+            <div class="portfolio-wrap">
+              <img src="{{asset('bilder/' ~ gericht.bild)}}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>{{gericht.beschreibung}} - EUR {{gericht.preis}}</h4>
+                <p>BestNr. {{gericht.id}}</p>
+                <a class="btn btn-outline-danger btn-sm" href={{ path('bestellen',{id: gericht.id})}} role="button">Bestellen</a>
+              </div>
+            </div>
+        
+          </div>
+        {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+{% endblock %}
